@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css" type="text/css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <header>
+         
+    </header>
+
+    <section class="bmi-calculator-section">
+        <div class="container">
+            <div class="row">
+                 <h1 class="heading">
+                    BMI Calculator
+                 </h1>
+                 <div class="user-input">
+                    <form action="">
+                        <div class="error">
+                            
+                               <label for="" style="color: red;"><?xml version="1.0" encoding="iso-8859-1"?>
+                                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                <svg  width="20px" height="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                     viewBox="0 0 512 512" xml:space="preserve">
+                                <polygon style="fill:#FFA418;" points="0,477.703 256,477.703 289.391,256 256,34.297 "/>
+                                <polygon style="fill:#FF8A1E;" points="256,34.297 256,477.703 512,477.703 "/>
+                                <g>
+                                    <circle style="fill:#324860;" cx="256" cy="405.359" r="16.696"/>
+                                    <rect x="239.304" y="177.185" style="fill:#324860;" width="33.391" height="178.087"/>
+                                </g>
+                                </svg>Please provide positive weight value.
+                            </label>
+                        </div>
+                        
+                        <div class="input-div">
+                            <label for="#age">Age:</label>
+                            <div class="age-input">
+                            <input  type="number" name="age" id="age" min="2" max="120">
+                        </div>
+                        </div>
+                        <div class="input-div">
+                            <label>Gender</label>
+
+                             <input type="radio" id="male" value="male" name="gender" aria-selected="true">
+                             <label for="#male">Male</label>
+
+                             <input type="radio" id="female" value="female" name="gender">
+                             <label for="#female">Female</label>
+
+                        </div>
+                        <div class="input-div">
+                            <label for>Height</label>
+                            <div class="height-input">
+                                <input type="number" id="height" name="height">
+                                <h6>cm</h6>   
+                           </div>
+                        </div>
+                        <div class="input-div">
+                            <label for>Weight</label>
+                                <div class="weight-input">
+                                <input type="number" id="weight" name="weight">
+                            <h6>kg</h6>      
+                        </div>
+
+                        </div>
+                        <div class="bmi-btn">
+                        <button class="btn btn-success" type="button">Find Result</button>
+                        <button class="btn btn-info" type="button">Clear</button>
+                    </div>
+
+                    </form>
+                   
+                 </div>
+                 <div class="result">
+                    <div class="result-heading">Result</div>
+                    <div class="result-value-state">
+                        <div class="value">BMI = 21.3 kg/m2</div>
+                        <div class="state" id="state">(_______)</div>
+
+                    </div>
+                    <div class="result-pie">
+                        <img src="pie-ok.png" alt="">
+                        <img class="arrow" src="pie-arrow.png" alt="">
+                    </div>
+                    
+                 </div>
+                 <div class="body-result">
+                    <div class="body">
+                        <img src="body/body1-removebg-preview.png" class="body-img">
+                    </div>
+                    <div class="instruction">
+                        <ul>
+                            <li>sample item follow</li>
+                            <li>sample item follow</li>
+                            <li>sample item follow</li>
+                            <li>sample item follow</li>
+                            <li>sample item follow</li>
+
+                        </ul>
+                    </div>
+                 </div> 
+            </div>
+
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+  // Your code here
+
+        const arrow = document.querySelector('.arrow');
+        const rotateButton = document.querySelector('.btn-success');
+        const clear =document.querySelector(".btn-info")
+        // const weightinput=document.getElementById("weight")
+        // const heightinput=document.getElementById("height")
+        const state = document.getElementById("state")
+        const error = document.querySelector(".error")
+        const bmi_value = document.querySelector(".result-value-state .value")
+        const bodyimg = document.querySelector(".body-img")
+        const body_result = document.querySelector(".body-result")
+        const result = document.querySelector(".result")
+        const user_input = document.querySelector(".user-input")
+        body_result.style.display="none"
+
+        body_result.classList.add('active');
+        result.classList.add('active');
+        user_input.classList.add('active');
+
+        
+        rotateButton.addEventListener('click', () => {
+            body_result.style.display="none"
+            body_result.classList.add('init');
+            result.classList.add('init');
+            body_result.classList.remove('init');
+            result.classList.remove('init');
+         
+
+
+            const ageInput = document.getElementById('age').value;
+            const genderInputs = document.querySelectorAll('input[name="gender"]');
+            let height = document.getElementById('height').value;
+            let weight = document.getElementById('weight').value;
+            // console.log(weightInput,heightInput);
+
+
+            // Loop through radio buttons to find the selected one
+            let genderSelected = false;
+             genderInputs.forEach(input => {
+            if (input.checked) {
+                genderSelected = true;
+            }
+            });
+
+        // Check if all conditions are met
+        if (ageInput >= 2 && ageInput <= 120 &&
+            genderSelected &&
+            height > 0 &&
+            weight > 0) 
+
+            {
+          
+
+            error.style.display="none"
+            height = height/100
+            const bmi = (weight/(height*height)).toFixed(2);
+            console.log(weight+"  " +height+'  ' + bmi);
+            bmi_value.innerHTML=`BMI = ${bmi} kg/m2`
+            const rotatedeg = (bmi - 12) / (40 - 10) * 180
+
+            
+            if (rotatedeg<185){
+                arrow.style.transform = `rotate(${rotatedeg}deg)`;
+
+
+            }else{
+                arrow.style.transform = `rotate(${185}deg)`;
+
+            }
+            if (bmi<16){
+                state.innerHTML="(Severe Thinness)"
+                bodyimg.src="body/original/body5.png"
+
+            }
+            else if(bmi<17){
+                state.innerHTML="(Moderate Thinness)"
+                bodyimg.src="body/original/body5.png"
+
+            }
+            else if(bmi<18.5){
+                state.innerHTML="(Mild Thinness)"
+                bodyimg.src="body/original/body5.png"
+
+            }
+            else if(bmi<25){
+                state.innerHTML="(Normal)"
+                bodyimg.src="body/original/body4.png"
+
+            }
+            else if(bmi<30){
+                state.innerHTML="(Overweight)"
+                bodyimg.src="body/original/body3.png"
+
+            }
+            else if(bmi<35){
+                state.innerHTML="(Obese Class I)"
+                bodyimg.src="body/original/body2.png"
+
+
+            }
+            else if(bmi<40){
+                state.innerHTML="(Obese Class II)"
+                bodyimg.src="body/original/body1.png"
+
+            }
+            else{
+                
+                state.innerHTML="(Obese Class III)"
+                bodyimg.src="body/original/body1.png"
+            }
+            body_result.style.display="flex"
+
+        } else {
+            error.style.display="block"
+            body_result.style.display="none"
+
+        }
+        
+            
+
+            
+
+             
+            
+
+        });
+        clear.addEventListener('click', () => {
+            const form = document.querySelector('form');
+
+        // Reset the form to clear all inputs and radio buttons
+           form.reset();
+            arrow.style.transform = `rotate(0deg)`;
+            bmi_value.innerHTML=``
+
+            state.innerHTML=""
+            
+
+
+        });
+    });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
